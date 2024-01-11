@@ -1,14 +1,10 @@
-import sys
-
 import pygame
-from pygame.locals import QUIT
-
 pygame.init()
 
 
 # Screen dimensions
-SCREEN_WIDTH = 800
-SCREEN_HIGHT = 600
+SCREEN_WIDTH = 500
+SCREEN_HIGHT = 500
 x= 50
 y= 50
 #added Velocity to make player movment easer
@@ -23,18 +19,18 @@ pygame.display.set_caption('GAME')
 sprite_sheet_image = pygame.image.load('sprites/doux.png').convert_alpha()
 
 # Background color
-background = (50, 50, 50)
+BACKGROUND = (50, 50, 50)
+BLACK = (0, 0, 0)
 
-#https://www.youtube.com/watch?v=M6e3_8LHc7A&list=PLjcN1EyupaQmZw8C-q6a4Zekidxf8SUj3&index=3
-
-def get_image(sheet, width, height, scale):
+def get_image(sheet, frame, width, height, scale, color):
     image = pygame.Surface((width, height)).convert_alpha()
     image.blit(sheet, (0, 0), (0, 0, width, height))
     image = pygame.transform.scale(image, (width * scale, height * scale))
+    image.set_colorkey(color)
     
     return image
 
-frame_0 = get_image(sprite_sheet_image, 24, 24, 10)
+frame_0 = get_image(sprite_sheet_image, 0, 24, 24, 3, BLACK)
 
 # Player(posX, posY, Hight, Width)
 # player = pygame.Rect((300, 250, 50, 50))
@@ -44,7 +40,7 @@ run = True
 while run:
 
     # refresh the screen
-    screen.fill(background)
+    screen.fill(BACKGROUND)
     
     screen.blit(frame_0, (0, 0))
 
